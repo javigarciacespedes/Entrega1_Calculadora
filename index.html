@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora</title>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+
+  let suma=undefined;
+  let producto=undefined;
+
+    const vaciar = () => {
+      document.getElementById("pantalla").value = "";
+    }
+
+    const cuadrado = () => {
+      let num = document.getElementById("pantalla");
+      num.value = num.value * num.value;
+    }
+
+    function mod(){
+      let num = document.getElementById("pantalla");
+      if(num.value>=0){
+        num.value = num.value;
+      }
+      else{
+        num.value = -num.value;
+      }
+      return num.value;
+    }
+
+    function fact(){
+      let num = document.getElementById("pantalla");
+      let data = 1;
+      for(i = 1; i<=num.value; i++){
+      data = data * i;
+      }
+      num.value = data;
+      return num.value;
+    }
+
+    function add(){
+      suma=document.getElementById("pantalla").value;
+    }
+
+    function mult(){
+      producto=document.getElementById("pantalla").value;
+    }
+
+    function eq(){
+      let resultado=document.getElementById("pantalla").value;
+      if(suma!=undefined){
+        return resultado=resultado+suma;
+      }
+      if(resultado!=undefined){
+        return resultado=resultado*producto;
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Calculadora de CORE </h1>
+  Número: <input type="text" id="pantalla" onclick="vaciar()">
+  <h2 id="info" class="grande"  title="Info sobre el número"> Info sobre el número</h2>
+  <h3>Operaciones unitarias</h3>
+  <button id="cuadrado" onclick="cuadrado()">x<sup>2</sup></button>
+  <input type="button" id="mod" onclick="mod()" value="Mod">
+  <input type="button" id=" factorial" onclick="fact()" value="n!">
+  <h3>Operaciones binarias</h3>
+  <input type="button" value="+" onclick="add()" id="suma">
+  <input type="button" value="*" onclick="mult()" id="multiplicacion">
+  <input type="button" value="=" onclick="eq()"id="igual"> 
+
+ </body>
+</html>
+
+
