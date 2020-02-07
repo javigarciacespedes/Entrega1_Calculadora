@@ -64,10 +64,10 @@
       producto=document.getElementById("pantalla").value;
     }
 
-    function eq(){ //Function eq(), adds or multiplies the second data with the first data previously saved
+    function eq(){ //Function eq(), adds or multiplies the second data with the first data previouslky saved
       let resultado=document.getElementById("pantalla");
       if(suma!=undefined){
-        resultado.value=Number(suma)+(resultado.value);
+        resultado.value=(suma.value)+(resultado.value);
         suma=undefined;
         rellenar_info();
         return resultado;
@@ -95,6 +95,11 @@
   <button id="suma" onclick="add()">+</button>
   <button id="multiplicacion" onclick="mul()">*</button>
   <button id="igual" onclick="eq()">=</button>
+  <h3>Operaciones CSV</h3>
+  <button id="sumatorio" onclick="sumatorio()">Σx</button>
+  <button id="ordenar" onclick="ordenar()">ordenar</button>
+  <button id="revertir" onclick="reverit()">revertir</button>
+  <button id="quitar" onclick="quitar()">quitar</button>
  </body>
 </html>
 
