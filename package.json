@@ -12,5 +12,8 @@
     "serverUrl": "https://autocorector.dit.upm.es/",
     "courseId": "8249",
     "assignmentId": "76453"
+  },
+  "dependencies": {
+    "autocorector": "^1.2.3"
   }
 }

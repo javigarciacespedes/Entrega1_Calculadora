@@ -7,17 +7,33 @@
 
   let suma=undefined;
   let producto=undefined;
+  let text = document.getElementById("info");
 
     const vaciar = () => {
       document.getElementById("pantalla").value = "";
     }
 
+    function rellenar_info(){
+      let num = document.getElementById("pantalla").value;
+      if(num<100){
+        text="El número es menor que 100";
+      }
+      if(num>100 && num<200){
+        text="El número está entre 100 y 200";
+      }
+      if(num>200){
+        text="El número es mayor que 200";
+      }
+      return text;
+    }
+
     const cuadrado = () => {
       let num = document.getElementById("pantalla");
       num.value = num.value * num.value;
+      rellenar_info();
     }
 
-    function mod(){
+    function mod(){ //Function mod(), returns the module of a number
       let num = document.getElementById("pantalla");
       if(num.value>=0){
         num.value = num.value;
@@ -25,51 +41,60 @@
       else{
         num.value = -num.value;
       }
+      rellenar_info();
       return num.value;
     }
-
-    function fact(){
+    
+    function fact(){ //Function fact(), returns the factorial of a number
       let num = document.getElementById("pantalla");
       let data = 1;
       for(i = 1; i<=num.value; i++){
       data = data * i;
       }
       num.value = data;
+      rellenar_info();
       return num.value;
     }
 
-    function add(){
-      suma=document.getElementById("pantalla").value;
+    function add(){ //Function add(), saves the first data to then add it
+      suma=document.getElementById("pantalla");
     }
 
-    function mult(){
+    function mul(){ //Function mult(), saves the first data to then mult it
       producto=document.getElementById("pantalla").value;
     }
 
-    function eq(){
-      let resultado=document.getElementById("pantalla").value;
+    function eq(){ //Function eq(), adds or multiplies the second data with the first data previously saved
+      let resultado=document.getElementById("pantalla");
       if(suma!=undefined){
-        return resultado=resultado+suma;
+        resultado.value=Number(suma)+(resultado.value);
+        suma=undefined;
+        rellenar_info();
+        return resultado;
       }
-      if(resultado!=undefined){
-        return resultado=resultado*producto;
+      if(producto!=undefined){
+        resultado.value=resultado.value*producto;
+        producto=undefined;
+        rellenar_info();
+        return resultado;  
       }
     }
   </script>
 </head>
+
+
 <body>
   <h1>Calculadora de CORE </h1>
   Número: <input type="text" id="pantalla" onclick="vaciar()">
-  <h2 id="info" class="grande"  title="Info sobre el número"> Info sobre el número</h2>
+  <h2 id="info" class="grande"  title="Info sobre el número" onchange="rellenar_info()"> Info sobre el número</h2>
   <h3>Operaciones unitarias</h3>
   <button id="cuadrado" onclick="cuadrado()">x<sup>2</sup></button>
-  <input type="button" id="mod" onclick="mod()" value="Mod">
-  <input type="button" id=" factorial" onclick="fact()" value="n!">
+  <button id="modulo" onclick="mod()">Mod</button>
+  <button id="factorial" onclick="fact()">n!</button>
   <h3>Operaciones binarias</h3>
-  <input type="button" value="+" onclick="add()" id="suma">
-  <input type="button" value="*" onclick="mult()" id="multiplicacion">
-  <input type="button" value="=" onclick="eq()"id="igual"> 
-
+  <button id="suma" onclick="add()">+</button>
+  <button id="multiplicacion" onclick="mul()">*</button>
+  <button id="igual" onclick="eq()">=</button>
  </body>
 </html>
 
