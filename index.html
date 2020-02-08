@@ -24,10 +24,11 @@
       if(num>200){
         text="El número es mayor que 200";
       }
-      return text;
+      return text.value;
     }
 
     const cuadrado = () => {
+      validar();
       let num = document.getElementById("pantalla");
       num.value = num.value * num.value;
       rellenar_info();
@@ -35,6 +36,7 @@
 
     function mod(){ //Function mod(), returns the module of a number
       let num = document.getElementById("pantalla");
+      validar();
       if(num.value>=0){
         num.value = num.value;
       }
@@ -47,6 +49,7 @@
     
     function fact(){ //Function fact(), returns the factorial of a number
       let num = document.getElementById("pantalla");
+      validar();
       let data = 1;
       for(i = 1; i<=num.value; i++){
       data = data * i;
@@ -57,27 +60,76 @@
     }
 
     function add(){ //Function add(), saves the first data to then add it
+      validar();
       suma=document.getElementById("pantalla");
     }
 
     function mul(){ //Function mult(), saves the first data to then mult it
+      validar();
       producto=document.getElementById("pantalla").value;
     }
 
-    function eq(){ //Function eq(), adds or multiplies the second data with the first data previouslky saved
-      let resultado=document.getElementById("pantalla");
+    function eq(){ //Function eq(), adds or multiplies the second data with the first data previously saved
+      let num=document.getElementById("pantalla");
+      validar();
       if(suma!=undefined){
-        resultado.value=(suma.value)+(resultado.value);
+        num.value=(suma.value)+(num.value);
         suma=undefined;
         rellenar_info();
-        return resultado;
+        return num;
       }
       if(producto!=undefined){
-        resultado.value=resultado.value*producto;
+        num.value=num.value*producto;
         producto=undefined;
         rellenar_info();
-        return resultado;  
+        return num;  
       }
+    }
+
+    function sumatorio(){ //Function sumatorio(), adds all the elements from a string
+      let num = document.getElementById("pantalla");
+      validar();
+      let list = num.value.split(","); //Transforms the numbers from the text box into an array with its number separated by comas
+      let i=0, acc=0;
+      while(i<list.length){
+        acc+= +list[i++];
+      }
+      num.value = acc;
+    }
+
+    function ordenar(){ //Function ordenar(), sorts the numbers
+      validar();
+      let num = document.getElementById("pantalla");
+      let list = num.value.split(",");
+      let ord = list.sort(); //Sorts the numbers
+      num.value = ord;
+    }
+
+    function revertir(){ //Function revertir(), turns the array upside down
+      validar();
+      let num = document.getElementById("pantalla");
+      let list = num.value.split(",");
+      let rev = list.reverse(); //Turns the array upside down
+      num.value = rev;
+    }
+
+    function quitar(){ //Function quitar(), removes the last item from the array
+      validar();
+      let num = document.getElementById("pantalla");
+      let list = num.value.split(",");
+      let quit = list.pop(); //Removes the last item from the array
+      num.value = list;
+    }
+
+    function validar(){ //Function  validar(), filter that pops up with an error message if the input data isnt the right one
+      let num = document.getElementById("pantalla").value;
+      if(num % 1 === 0 || num % 1 === 1){
+        return num;
+      }
+      else{
+        num.value="Error";
+        return num;
+      } 
     }
   </script>
 </head>
@@ -98,7 +150,7 @@
   <h3>Operaciones CSV</h3>
   <button id="sumatorio" onclick="sumatorio()">Σx</button>
   <button id="ordenar" onclick="ordenar()">ordenar</button>
-  <button id="revertir" onclick="reverit()">revertir</button>
+  <button id="revertir" onclick="revertir()">revertir</button>
   <button id="quitar" onclick="quitar()">quitar</button>
  </body>
 </html>
