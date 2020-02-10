@@ -44,15 +44,16 @@
       validar(num);
     }
     
-    function fact(){ //Function fact(), returns the factorial of a number
+    const fact = () => {
       let num = document.getElementById("pantalla");
-      let data = 1;
-      for(i = 1; i<=num.value; i++){
-      data = data * i;
+      var i;
+      var total = 1;
+      for(i = 1; i <= num.value; i++) {
+        total = total * i;
       }
-      num.value = data;
-      rellenar_info(num);
-      validar(num);
+      num.value = total;
+      rellenar_info();
+      validar(data);
     }
 
     function add(){ //Function add(), saves the first data to then add it
@@ -119,8 +120,8 @@
     }
 
     function validar(num){ //Function  validar(), filter that pops up with an error message if the input data isnt the right one
-      if((num.value<10) || (num.value>=10) || (num[0]<0) || (num[0]>=0)){
-        num.value;
+      if((num.value<10) || (num.value>=10) || (num[0]<10) || (num[0]>=10)){
+        num.value=num.value;
       }
       else{
         document.getElementById("pantalla").value="Error";
