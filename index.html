@@ -8,13 +8,13 @@
   let suma=undefined;
   let producto=undefined;
 
-    const vaciar = () => {
-      document.getElementById("pantalla").value = "";
+    const vaciar = () => { //Function vaciar(), the value of the text box is changed into an empty string
+      document.getElementById("pantalla").value = ""; //.value: returns the numerical data of a variable if possible
     }
 
-    function rellenar_info(num){
+    function rellenar_info(num){  //Function rellenar_info(), changes the text that is located above the text box. Used in every  non-string function
       if(num.value<100){
-        document.getElementById("info").innerHTML="Info: El resultado es menor que 100";
+        document.getElementById("info").innerHTML="Info: El resultado es menor que 100"; //.innerHTML: returns the written data of a variable if possible
       }
       if(num.value>100 && num.value<200){
         document.getElementById("info").innerHTML="Info: El resultado está entre 100 y 200";
@@ -24,7 +24,7 @@
       }
     }
 
-    const cuadrado = () => {
+    const cuadrado = () => { //Function cuadrado(), returns the square of a number
       let num = document.getElementById("pantalla");
       num.value = num.value * num.value;
       rellenar_info(num);
@@ -44,16 +44,15 @@
       validar(num);
     }
     
-    const fact = () => {
+    function fact(){ //Function fact(), returns the factorial of a number
       let num = document.getElementById("pantalla");
-      var i;
-      var total = 1;
-      for(i = 1; i <= num.value; i++) {
-        total = total * i;
+      let data = num.value;
+      for(i = 1; i < data; i++) { //Factorial operation
+        num.value = num.value * i;
       }
-      num.value = total;
-      rellenar_info();
-      validar(data);
+      num.value;
+      rellenar_info(num);
+      validar(num)
     }
 
     function add(){ //Function add(), saves the first data to then add it
@@ -69,7 +68,7 @@
     function eq(){ //Function eq(), adds or multiplies the second data with the first data previously saved
       let num=document.getElementById("pantalla");
       if(suma!=undefined){
-        num.value= + (Number(suma)+Number(num.value));
+        num.value= + (Number(suma)+Number(num.value)); //Number: returns the input data as an int
         suma=undefined;
         rellenar_info(num);
         validar(num);
@@ -86,9 +85,9 @@
 
     function sumatorio(){ //Function sumatorio(), adds all the elements from a string
       let num = document.getElementById("pantalla");
-      let list = num.value.split(","); //Transforms the numbers from the text box into an array with its number separated by comas
+      let list = num.value.split(","); //Transforms the numbers from the text box into an array if the numbers are separated by comas
       let i=0, acc=0;
-      while(i<list.length){
+      while(i<list.length){ //Sumatory operation
         acc+= +list[i++];
       }
       num.value = acc;
@@ -97,7 +96,7 @@
 
     function ordenar(){ //Function ordenar(), sorts the numbers
       let num = document.getElementById("pantalla");
-      let list = num.value.split(",");
+      let list = num.value.split(","); //Transforms the numbers from the text box into an array if the numbers are separated by comas
       let ord = list.sort(); //Sorts the numbers
       num.value = ord;
       validar(ord);
@@ -105,7 +104,7 @@
 
     function revertir(){ //Function revertir(), turns the array upside down
       let num = document.getElementById("pantalla");
-      let list = num.value.split(",");
+      let list = num.value.split(","); //Transforms the numbers from the text box into an array if the numbers are separated by comas
       let rev = list.reverse(); //Turns the array upside down
       num.value = rev;
       validar(rev);
@@ -113,14 +112,14 @@
 
     function quitar(){ //Function quitar(), removes the last item from the array
       let num = document.getElementById("pantalla");
-      let list = num.value.split(",");
+      let list = num.value.split(","); //Transforms the numbers from the text box into an array if the numbers are separated by comas
       let quit = list.pop(); //Removes the last item from the array
       num.value = list;
       validar(list);
     }
 
-    function validar(num){ //Function  validar(), filter that pops up with an error message if the input data isnt the right one
-      if((num.value<10) || (num.value>=10) || (num[0]<10) || (num[0]>=10)){
+    function validar(num){ //Function  validar(), filter that pops up with an error message if the input data isnt the right one. Used in each function
+      if((num.value<10) || (num.value>=10) || (num[0]<10) || (num[0]>=10)){ //Conditions for right data
         num.value=num.value;
       }
       else{
